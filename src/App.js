@@ -1,14 +1,14 @@
 import React from 'react'
+import './asset/sass/main.scss'
 import Line from './components/Line'
-import { BrowserRouter } from 'react-router-dom';
-import { Routes, Route } from 'react-router';
+import Nav from './components/Nav'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Line/>} />
-      </Routes>
+      <Nav/>
+      <Line/>
     </BrowserRouter>
   )
 }
