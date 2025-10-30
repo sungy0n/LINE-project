@@ -5,6 +5,13 @@ import more from '../asset/image/more.svg'
 import apple from '../asset/image/apple.svg'
 import google from '../asset/image/google.svg'
 import line_music from '../asset/image/line_music.png'
+import content1 from '../asset/image/content2.png'
+import content2 from '../asset/image/content1.png'
+import content3 from '../asset/image/content3.png'
+import content4 from '../asset/image/content4.png'
+import content5 from '../asset/image/content5.png'
+import content6 from '../asset/image/content6.png'
+import banner_img from '.././asset/image/banner.png'
 
 const Line = () => {
   return (
@@ -42,7 +49,7 @@ const Line = () => {
             </div>
 
             <div className="content1_right">
-              <img src={content1_right_img} alt="" />
+              <img className='content_img' src={content1_right_img} alt="" />
             </div>
 
           </div>
@@ -80,10 +87,8 @@ const Line = () => {
               </div>
               </div>
             </div>
-          </div>
-
-          
-          </div>
+          </div>  
+        </div>
           <div className="section3">
             <h1>커뮤니케이션 앱</h1>
             <div className="text">언제 어디서나 무료로 메세지를 보내고,깨끗한 음질로 24시간 자유롭게 무료 통화가
@@ -92,14 +97,14 @@ const Line = () => {
             <div className="content">
               <div className="content_top">
                 <div className="content1">
-                  {/* <img src={content1} alt="" /> */}
+                  <img className='content_img' src={content1} alt="" />
                   <h1>대화, 음성통화, 영상통화</h1>
                   <p>라인 유저라면 1:1은 물론 그룹을 만들어서 대화,
                     <br />음성통화, 영상통화를 이용할 수 있습니다.
                   </p>
                 </div>
                 <div className="content2">
-                  {/* <img src={content2} alt="" /> */}
+                  <img className='content_img' src={content2} alt="" />
                   <h1>스티커, 이모티콘, 테마</h1>
                   <p>대화방에서 마음을 전할 수 있는 다양한 스티커와
                     <br />이모티콘, 나만의 개성을 표현할 수 있는 테마로 나만의 맞춤형
@@ -107,28 +112,28 @@ const Line = () => {
                   </p>
                 </div>
                 <div className="content3">
-                  {/* <img src={content3} alt="" /> */}
+                  <img className='content_img' src={content3} alt="" />
                   <h1>오픈챗</h1>
                   <p>일상이나 관심사를 공유하고 정보를 나눌 수 있습니다.</p>
                 </div>
               </div>
                <div className="content_bottom">
-                {/* <img src={content4} alt="" /> */}
                 <div className="content4">
+                  <img className='content_img' src={content4} alt="" />
                   <h1>홈 탭</h1>
                   <p>라인의 각종 서비스 및 스티커와 같은 다양한 정보와
                     <br />콘텐츠를 확인할 수 있습니다.
                   </p>
                 </div>
                 <div className="content5">
-                  {/* <img src={content5} alt="" /> */}
+                  <img className='content_img' src={content5} alt="" />
                   <h1>LINE VROOM</h1>
                   <p>LIVE VROOM에서 취향에 맞는 계정을 팔로우하고, 멋진
                     <br />동영상,사진,게시글을 만나보세요.
                   </p>
                 </div>
                 <div className="content6">
-                  {/* <img src={content6} alt="" /> */}
+                  <img className='content_img' src={content6} alt="" />
                   <h1>윌렛 탭</h1>
                   <p>송금이나 결제 등 '라인 페이' 서비스 외에도 다양한 금융
                     <br />서비스를 이용할 수 있습니다.
@@ -136,7 +141,16 @@ const Line = () => {
                 </div>
               </div>
             </div> 
-
+            <div className="banner">
+              <div className="banner_text">
+                <h1>기업 지원</h1>
+              </div>
+              <img src={banner_img} alt="" />
+            </div>
+        </div>
+        <div className="section4">
+          <h1>서비스</h1>
+            <div className="text">일부 서비스는 특정 국가에서만 사용 가능합니다.</div>
         </div>
     </div> 
   )
