@@ -4,6 +4,7 @@ import Nav from './components/Nav'
 import Line from './components/Line'
 import Footer from './components/Footer'
 import Category from './components/Service_component/Category'
+import Card from './components/Service_component/Card'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
@@ -11,7 +12,6 @@ const App = () => {
     <BrowserRouter>
       <Nav/>
       <Line/>
-      <Category/>
       <Footer/>
     </BrowserRouter>
   )

@@ -1,4 +1,6 @@
 import React from 'react'
+import Category from './Service_component/Category'
+import Card from './Service_component/Card'
 import content1_right_img from '../asset/image/content1_right.png'
 import content2_left_img from '../asset/image/content2_left.png'
 import more from '../asset/image/more.svg'
@@ -149,8 +151,25 @@ const Line = () => {
             </div>
         </div>
         <div className="section4">
-          <h1>서비스</h1>
-            <div className="text">일부 서비스는 특정 국가에서만 사용 가능합니다.</div>
+            <div className="content1">
+              <h1>서비스</h1>
+              <div className="text">일부 서비스는 특정 국가에서만 사용 가능합니다.</div>
+            </div>
+            <div className="content2">
+              <Category/>
+              <div className="card_box">
+                <div className="box">
+                  <Card/>
+                  <Card/>
+                  <Card/>
+                </div>
+                <div className="box">
+                  <Card/>
+                  <Card/>
+                  <Card/>
+                </div>
+              </div>
+            </div>
         </div>
     </div> 
   )
