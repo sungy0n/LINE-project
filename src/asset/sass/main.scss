@@ -420,3 +420,31 @@ body{
         }
     }
 }
+
+
+// Service component
+
+#Category_wrap{
+    font-family: 'LineSeed';
+    font-weight: bold;
+    font-size: 14px;
+
+    margin: 50px 130px;
+
+    ul{
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        gap: 40px;
+
+        span{
+            width: 100%;
+            border: 1px solid #b2b2b2;
+            border-radius: 20px;
+            color: #5b5b5b;
+            padding: 10px 15px;
+
+        }
+
+    }
+}
