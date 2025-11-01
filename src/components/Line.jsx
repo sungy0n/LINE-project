@@ -13,9 +13,21 @@ import content3 from '../asset/image/content3.png'
 import content4 from '../asset/image/content4.png'
 import content5 from '../asset/image/content5.png'
 import content6 from '../asset/image/content6.png'
-import banner_img from '.././asset/image/banner.png'
+import banner_img from '../asset/image/banner.png'
+
+import line_icon from '../asset/image/line_icon.png'
+import openchat_icon from '../asset/image/openchat_icon.svg'
+import linewebtoon_icon from '../asset/image/linewebtoon_icon.png'
+import linemusic_icon from '../asset/image/linemusic_icon.svg'
+import linefate_icon from '../asset/image/linefate_icon.png'
+import linerecords_icon from '../asset/image/linerecords_icon.svg'
+import charmmy_icon from '../asset/image/charmmy_icon.svg'
+import pointclub_icon from '../asset/image/pointclub_icon.svg'
+import linework_icon from '../asset/image/linework_icon.svg'
+
 
 const Line = () => {
+
   return (
     <div id="Line_wrap">
         <div className="section1">
@@ -159,15 +171,60 @@ const Line = () => {
               <Category/>
               <div className="card_box">
                 <div className="box">
-                  <Card/>
-                  <Card/>
-                  <Card/>
+                  <Card icon_img={line_icon} title="LINE" description="사람, 정보, 서비스를 연결하는 커뮤니케이션 앱"/>
+                  <Card icon_img={openchat_icon} title="오픈챗" description="같은 관심사를 가진 친구들과 즐겁게 대화해요!" />
+                  <Card icon_img={linewebtoon_icon} title="라인 망가" description="인기 있는 최신 만화를 마음껏 감상해요!"/>
                 </div>
                 <div className="box">
-                  <Card/>
-                  <Card/>
-                  <Card/>
+                  <Card icon_img={line_music} title="라인 뮤직" description="최신 음악 트렌드를 만나보세요!"/>
+                  <Card icon_img={linefate_icon} title="라인 운세" description="매일 유명한 역술인들과 만날 수 있는 운세 앱"/>
+                  <Card icon_img={linerecords_icon} title="라인 레코즈" description="스트리밍 시대의 디지털 레이블"/>
                 </div>
+                <div className="box">
+                  <Card icon_img={charmmy_icon} title="Charmmy" description="여성의 고민에 답하는 미디어"/>
+                  <Card icon_img={pointclub_icon} title="라인 포인트클럽" description="실속 있는 혜택을 받을 수 있는 라인 멤버십 프르그램"/>
+                  <Card icon_img={linework_icon} title="라인 아르바이트" description="라인으로 원하는 아르바이트를 찾아보세요!"/>
+                </div>
+                {/* <div className="box">
+                  <Card icon_img={} title="라인프렌즈 스토어" description="라인프렌즈 공식 브랜드 스토어"/>
+                  <Card icon_img={} title="라인 플라이어" description="쇼핑이 더욱 편리해지는 디지털 광고 전단지"/>
+                  <Card icon_img={} title="라인 기프트" description="소액부터 심플하게 즐기는 전문적인 증권 거래 서비스"/>
+                </div>
+                <div className="box">
+                  <Card icon_img={} title="라인 증권" description="소액부터 심플하게 즐기는 전문적인 증권 거래 서비스"/>
+                  <Card icon_img={} title="라인 포켓 머니" description="지금 바로 소액의 자금이 필요할 때"/>
+                  <Card icon_img={} title="라인 FX" description="라인으로 시작하는 FX 마진 거래 (외환차익거래)"/>
+                </div>
+                <div className="box">
+                  <Card icon_img={} title="LINE BITMAX" description="라인에서 암호화폐 거래를 시작해보세요."/>
+                  <Card icon_img={} title="라인 광고" description="라인 플랫폼에 간편하게 게시할 수 있는 온라인 광고 서비스"/>
+                  <Card icon_img={} title="라인 광고 네트워크" description="라인의 다양한 사용자를 타겟하는 대규모 광고 서비스"/>
+                </div>
+                <div className="box">
+                  <Card icon_img={} title="Talk Head View" description="눈에 띄는 동영상 광고를 라인 대화 목록 최상단에 게시하는 광고 서비스"/>
+                  <Card icon_img={} title="라인 세일즈 프로모션" description="라인을 활용한 매장 판촉 특화형 솔루션"/>
+                  <Card icon_img={} title="라인 공식 계정" description="라인 사용자에게 다이렉트로 정보를 전달할 수 있는 공식 계정"/>
+                </div>
+                <div className="box">
+                  <Card icon_img={} title="라인 포인트 AD" description="인센티브를 통해 사용자를 확보할 수 있는 광고 서비스"/>
+                  <Card icon_img={} title="라인 프로모션 스티커" description="라인 스티커를 활용하여 브랜드 인지도를 상승시키고 고객을 확보할 수 있는 광고 서비스"/>
+                  <Card icon_img={} title="라인 미니 앱" description="일상에 도움이 되는 다양한 서비스를 라인으로 제공"/>
+                </div>
+                <div className="box">
+                  <Card icon_img={} title="라인 리서치" description="일본 최대 규모의 리서치 플랫폼"/>
+                  <Card icon_img={} title="라인 뉴스" description="뉴스부터 연예계 소식까지 라인으로 지금 화제가 되고 있는 뉴스를 확인해보세요."/>
+                  <Card icon_img={} title="라인 셰프" description="세상에서 가장 귀엽고, 맛있는 쿠킹 타이쿤 게임"/>
+                </div>
+                <div className="box">
+                  <Card icon_img={} title="라인프렌즈 스토어" description="라인프렌즈 공식 브랜드 스토어"/>
+                  <Card icon_img={} title="라인 플라이어" description="쇼핑이 더욱 편리해지는 디지털 광고 전단지"/>
+                  <Card icon_img={} title="라인 기프트" description="소액부터 심플하게 즐기는 전문적인 증권 거래 서비스"/>
+                </div>
+                <div className="box">
+                  <Card icon_img={} title="라인 퍼즐탄탄" description="귀여운 펜더가 등장하는 사천성 게임!"/>
+                  <Card icon_img={} title="라인 버블" description="라인 캐릭터와 함께 즐기는 신나는 버블 슈팅 게임!"/>
+                  <Card icon_img={} title="라인 브라운팜" description="브라운과 함께 유기농 농장을 만들어나가는 모바일 SNG게임"/>
+                </div> */}
               </div>
             </div>
         </div>
