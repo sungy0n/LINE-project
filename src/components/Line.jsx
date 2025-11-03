@@ -39,8 +39,18 @@ import line_official_icon from '../asset/image/Card_image/line_official.png'
 import line_point_ad_icon from '../asset/image/Card_image/line_point_ad.png'
 import line_promotion_sticker_icon from '../asset/image/Card_image/promotrion_sticker.png'
 import line_mini_app_icon from '../asset/image/Card_image/line_mini_app.png'
-
-
+import line_research_icon from '../asset/image/Card_image/line_research.png'
+import line_news_icon from '../asset/image/Card_image/line_news.png'
+import line_chef_icon from '../asset/image/Card_image/line_chef.png'
+import line_bubble2_icon from '../asset/image/Card_image/line_bubble.png'
+import line_poko_icon from '../asset/image/Card_image/line_poko.jpeg'
+import line_ranger_icon from '../asset/image/Card_image/line_ranger.png'
+import line_disney_icon from '../asset/image/Card_image/line_disney.png'
+import line_pokopang_icon from '../asset/image/Card_image/line_pokopang.png'
+import line_pop2_icon from '../asset/image/Card_image/line_pop2.png'
+import line_puzzle_icon from '../asset/image/Card_image/line_puzzle.png'
+import line_bubble_icon from '../asset/image/Card_image/line_bubble1.png'
+import line_brownfarm_icon from '../asset/image/Card_image/line_brownfarm.jpg'
 
 const Line = () => {
 
@@ -226,21 +236,26 @@ const Line = () => {
                   <Card icon_img={line_promotion_sticker_icon} title="라인 프로모션 스티커" description="라인 스티커를 활용하여 브랜드 인지도를 상승시키고 고객을 확보할 수 있는 광고 서비스"/>
                   <Card icon_img={line_mini_app_icon} title="라인 미니 앱" description="일상에 도움이 되는 다양한 서비스를 라인으로 제공"/>
                 </div>
-                {/* <div className="box">
-                  <Card icon_img={} title="라인 리서치" description="일본 최대 규모의 리서치 플랫폼"/>
-                  <Card icon_img={} title="라인 뉴스" description="뉴스부터 연예계 소식까지 라인으로 지금 화제가 되고 있는 뉴스를 확인해보세요."/>
-                  <Card icon_img={} title="라인 셰프" description="세상에서 가장 귀엽고, 맛있는 쿠킹 타이쿤 게임"/>
+                <div className="box">
+                  <Card icon_img={line_research_icon} title="라인 리서치" description="일본 최대 규모의 리서치 플랫폼"/>
+                  <Card icon_img={line_news_icon} title="라인 뉴스" description="뉴스부터 연예계 소식까지 라인으로 지금 화제가 되고 있는 뉴스를 확인해보세요."/>
+                  <Card icon_img={line_chef_icon} title="라인 셰프" description="세상에서 가장 귀엽고, 맛있는 쿠킹 타이쿤 게임"/>
                 </div>
                 <div className="box">
-                  <Card icon_img={} title="라인프렌즈 스토어" description="라인프렌즈 공식 브랜드 스토어"/>
-                  <Card icon_img={} title="라인 플라이어" description="쇼핑이 더욱 편리해지는 디지털 광고 전단지"/>
-                  <Card icon_img={} title="라인 기프트" description="소액부터 심플하게 즐기는 전문적인 증권 거래 서비스"/>
+                  <Card icon_img={line_bubble2_icon} title="라인 버블2" description="두근두근 코니와 함께 하는 글로벌 1위 3매칭 슈팅 퍼즐게임"/>
+                  <Card icon_img={line_poko_icon} title="라인 포코포코" description="포코팡의 인기 캐릭터들이 등장하는 3매치 방식의 퍼즐게임"/>
+                  <Card icon_img={line_ranger_icon} title="라인 레인저스" description="샐리를 구출하라! 5천만 유저가 선택한 글로벌 No. 1 디펜스 액션 RPG 게임"/>
                 </div>
                 <div className="box">
-                  <Card icon_img={} title="라인 퍼즐탄탄" description="귀여운 펜더가 등장하는 사천성 게임!"/>
-                  <Card icon_img={} title="라인 버블" description="라인 캐릭터와 함께 즐기는 신나는 버블 슈팅 게임!"/>
-                  <Card icon_img={} title="라인 브라운팜" description="브라운과 함께 유기농 농장을 만들어나가는 모바일 SNG게임"/>
-                </div> */}
+                  <Card icon_img={line_disney_icon} title="라인 디즈니 썸썸" description="디즈니 인형을 연결해서 모으는 퍼즐 게임"/>
+                  <Card icon_img={line_pokopang_icon} title="LINE 포코팡 타운" description="터치 퍼즐 게임을 즐기면서 마을을 만들어보자!"/>
+                  <Card icon_img={line_pop2_icon} title="라인팝2" description="초보자부터 상급자까지 함께 즐길 수 있는 퍼즐 게임!"/>
+                </div>
+                <div className="box">
+                  <Card icon_img={line_puzzle_icon} title="라인 퍼즐탄탄" description="귀여운 펜더가 등장하는 사천성 게임!"/>
+                  <Card icon_img={line_bubble_icon} title="라인 버블" description="라인 캐릭터와 함께 즐기는 신나는 버블 슈팅 게임!"/>
+                  <Card icon_img={line_brownfarm_icon} title="라인 브라운팜" description="브라운과 함께 유기농 농장을 만들어나가는 모바일 SNG게임"/>
+                </div>
               </div>
             </div>
         </div>
