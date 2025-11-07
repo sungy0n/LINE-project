@@ -4,8 +4,8 @@ import Card from './Service_component/Card'
 import content1_right_img from '../asset/image/content1_right.png'
 import content2_left_img from '../asset/image/content2_left.png'
 import more from '../asset/image/more.svg'
-import apple from '../asset/image/apple.svg'
-import google from '../asset/image/google.svg'
+import apple from '../asset/image/Footer_image/apple.png'
+import google from '../asset/image/Footer_image/google.png'
 import content1 from '../asset/image/content2.png'
 import content2 from '../asset/image/content1.png'
 import content3 from '../asset/image/content3.png'
@@ -13,24 +13,23 @@ import content4 from '../asset/image/content4.png'
 import content5 from '../asset/image/content5.png'
 import content6 from '../asset/image/content6.png'
 import banner_img from '../asset/image/banner.png'
-import line_icon from '../asset/image/line_icon.png'
+import line_icon from '../asset/image/line.png'
 
 import openchat_icon from '../asset/image/Card_image/openchat.png'
 import linewebtoon_icon from '../asset/image/Card_image/linewebtoon_icon.png'
 import line_music_icon from '../asset/image/Card_image/linemusic.png'
-import linefate_icon from '../asset/image/Card_image/linefate_icon.png'
+import linefate_icon from '../asset/image/Card_image/line_fate_icon.png'
 import linerecords_icon from '../asset/image/Card_image/line_record.svg'
-import charmmy_icon from '../asset/image/Card_image/charmmy_icon.svg'
-import pointclub_icon from '../asset/image/Card_image/pointclub_icon.svg'
-import linework_icon from '../asset/image/Card_image/linework.png'
-
+import charmmy_icon from '../asset/image/Card_image/charmmy_icon.png'
+import pointclub_icon from '../asset/image/Card_image/line_pointclub_icon.png'
+import linework_icon from '../asset/image/Card_image/line_work_icon.png'
 import line_friends_icon from '../asset/image/Card_image/linefriends.jpg'
 import line_flyer_icon from '../asset/image/Card_image/lineflyer.png'
 import line_gift_icon from '../asset/image/Card_image/linegift.png'
-import line_stock_icon from '../asset/image//Card_image/linestock.png'
+import line_stock_icon from '../asset/image//Card_image/line_stock_icon.png'
 import line_pocket_money_icon from '../asset/image/Card_image/line_pocket_money.png'
 import line_FX_icon from '../asset/image/Card_image/lineFX.png'
-import line_bitmax_icon from '../asset/image/Card_image/line_bitmax.png'
+import line_bitmax_icon from '../asset/image/Card_image/line_bitmax_icon.png'
 import line_add_icon from '../asset/image/Card_image/line_ad.png'
 import line_network_icon from '../asset/image/Card_image/line_network.png'
 import talk_head_view_icon from '../asset/image/Card_image/talk_head_view.png'
@@ -64,7 +63,6 @@ const Line = () => {
         </div>
         <div className="section2">
           <div className="content1">
-
             <div className="content1_left">
               <div className="logo">
                 NEWS
@@ -136,14 +134,14 @@ const Line = () => {
             </div>
             <div className="content">
               <div className="content_top">
-                <div className="content1">
+                <div id='content' className="content1">
                   <img className='content_img' src={content1} alt="" />
                   <h1>대화, 음성통화, 영상통화</h1>
                   <p>라인 유저라면 1:1은 물론 그룹을 만들어서 대화,
                     <br />음성통화, 영상통화를 이용할 수 있습니다.
                   </p>
                 </div>
-                <div className="content2">
+                <div id='content' className="content2">
                   <img className='content_img' src={content2} alt="" />
                   <h1>스티커, 이모티콘, 테마</h1>
                   <p>대화방에서 마음을 전할 수 있는 다양한 스티커와
@@ -151,28 +149,28 @@ const Line = () => {
                     <br />서비스를 이용할 수 있습니다.
                   </p>
                 </div>
-                <div className="content3">
+                <div id='content' className="content3">
                   <img className='content_img' src={content3} alt="" />
                   <h1>오픈챗</h1>
                   <p>일상이나 관심사를 공유하고 정보를 나눌 수 있습니다.</p>
                 </div>
               </div>
                <div className="content_bottom">
-                <div className="content4">
+                <div id='content' className="content4">
                   <img className='content_img' src={content4} alt="" />
                   <h1>홈 탭</h1>
                   <p>라인의 각종 서비스 및 스티커와 같은 다양한 정보와
                     <br />콘텐츠를 확인할 수 있습니다.
                   </p>
                 </div>
-                <div className="content5">
+                <div id='content' className="content5">
                   <img className='content_img' src={content5} alt="" />
                   <h1>LINE VROOM</h1>
                   <p>LIVE VROOM에서 취향에 맞는 계정을 팔로우하고, 멋진
                     <br />동영상,사진,게시글을 만나보세요.
                   </p>
                 </div>
-                <div className="content6">
+                <div id='content' className="content6">
                   <img className='content_img' src={content6} alt="" />
                   <h1>윌렛 탭</h1>
                   <p>송금이나 결제 등 '라인 페이' 서비스 외에도 다양한 금융
@@ -185,13 +183,13 @@ const Line = () => {
               <div className="banner_text">
                 <h1>기업 지원</h1>
               </div>
-              <img src={banner_img} alt="" />
+              <img className='banner_img' src={banner_img} alt="" />
             </div>
         </div>
         <div className="section4">
             <div className="content1">
               <h1>서비스</h1>
-              <div className="text">일부 서비스는 특정 국가에서만 사용 가능합니다.</div>
+              <p>일부 서비스는 특정 국가에서만 사용 가능합니다.</p>
             </div>
             <div className="content2">
               <Category/>
