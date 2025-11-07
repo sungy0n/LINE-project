@@ -3,7 +3,7 @@ import Category from './Service_component/Category'
 import Card from './Service_component/Card'
 import content1_right_img from '../asset/image/content1_right.png'
 import content2_left_img from '../asset/image/content2_left.png'
-import more from '../asset/image/more.svg'
+import more from '../asset/image/more.png'
 import apple from '../asset/image/Footer_image/apple.png'
 import google from '../asset/image/Footer_image/google.png'
 import content1 from '../asset/image/content2.png'
@@ -71,8 +71,8 @@ const Line = () => {
               <h1>LINE NEWS</h1>
               <div className="text">
                   <p className='color'>지금 화제가 되고 있는
-                  <br />글로벌 뉴스
-                </p>
+                    <br />글로벌 뉴스
+                  </p>
                 <p>바쁜 일과 중에도 글로벌 이슈를 알고 싶다면 라인 뉴스를
                   <br />추천합니다. 정치, 경제부터 연예계 소식까지 모든 장르의 뉴스를
                   <br />전하는 라인 뉴스에는 '알고 싶은 정보가' 가득합니다.
@@ -82,7 +82,9 @@ const Line = () => {
                 <div className="more_img">
                   <img src={more} alt="" />
                 </div>
-                자세히 보기
+                <p>
+                  자세히 보기
+                </p>
               </div>
             </div>
 
@@ -121,7 +123,9 @@ const Line = () => {
                   <div className="more_img">
                     <img src={more} alt="" />
                   </div>
-                  자세히 보기
+                  <p>
+                    자세히 보기
+                  </p>
               </div>
               </div>
             </div>
