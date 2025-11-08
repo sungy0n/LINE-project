@@ -87,18 +87,15 @@ const Line = () => {
                 </p>
               </div>
             </div>
-
             <div className="content1_right">
               <img className='content_img' src={content1_right_img} alt="" />
             </div>
-
           </div>
 
           <div className="content2">
             <div className="content2_left">
               <img src={content2_left_img} alt="" />
             </div>
-
             <div className="content2_right">
               <div className="logo">
                 <img src={line_music_icon} alt="" />
