@@ -529,14 +529,9 @@ body{
                 justify-content: space-between;
 
                 .card_box{
-                    display: flex;
-                    flex-direction: column;
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
                     gap: 40px;
-
-                    .box{
-                        display: flex;
-                        gap: 40px;
-                    }
                 }
             }
 
@@ -634,6 +629,7 @@ body{
     font-family: 'LineSeed';
     font-weight: 700;
     font-size: 13px;
+    cursor: pointer;
 
     ul{
         display: flex;
@@ -650,6 +646,12 @@ body{
 
         }
 
+    }
+
+    .category li.active span{
+        background-color: #07b53b; 
+        border: 1px solid #07b53b; 
+        color: white; 
     }
 }
 
