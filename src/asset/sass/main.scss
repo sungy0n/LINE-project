@@ -499,10 +499,9 @@ body{
         .section4{
             padding: 0 135px;
             padding-bottom: 200px;
-            display: flex;
+            display: flex; 
             flex-direction: column; 
             background-color:rgba(247, 248, 249);
-          
 
             .content1{
                 margin-bottom: 60px;
@@ -527,11 +526,11 @@ body{
             .content2{
                 display: flex;
                 justify-content: space-between;
-
+                
                 .card_box{
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
-                    gap: 40px;
+                    gap: 40px;                                
                 }
             }
 
@@ -630,6 +629,11 @@ body{
     font-weight: 700;
     font-size: 13px;
     cursor: pointer;
+
+    //card 스크롤
+    position: sticky; 
+    top: 180px;
+    height: fit-content;
 
     ul{
         display: flex;
