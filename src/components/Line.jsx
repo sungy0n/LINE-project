@@ -62,6 +62,11 @@ const Line = () => {
           </div>
         </div>
         <div className="section2">
+          <div className="line">
+            <div id='circle' className="circle1"></div>
+            <div id='circle' className="circle2"></div>
+            <div className="circle3"></div>
+          </div>
           <div className="content1">
             <div className="content1_left">
               <div className="logo">
@@ -91,7 +96,6 @@ const Line = () => {
               <img className='content_img' src={content1_right_img} alt="" />
             </div>
           </div>
-
           <div className="content2">
             <div className="content2_left">
               <img src={content2_left_img} alt="" />

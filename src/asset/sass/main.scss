@@ -112,12 +112,57 @@ body{
     }
 
     .section2{
+        position: relative;
         margin-top: 280px;
 
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        .line{
+            bottom: calc(0% + 10px);
+            position: absolute;
+            z-index: 1;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            width: 1px;
+            height: 1433px;
+            border: 0.9px dashed rgba(30, 30, 30, 0.3);
+
+            #circle{
+                position: absolute;
+                z-index: 2;
+                width: 10px;
+                height: 10px;
+                background-color: #fff;
+                border: 1px solid rgba(30, 30, 30, 0.3);
+                border-radius: 50%;
+            }
+
+            .circle1{
+                top: calc(0% - 10px);
+            }
+
+            .circle2{
+                top: calc(50% - 10px);
+            }
+
+            .circle3{
+                position: absolute;
+                z-index: 2;
+                width: 20px;
+                height: 20px;
+                background-color: #fff;
+                border: 1px solid rgba(30, 30, 30, 0.3);
+                border-radius: 50%;
+
+                top: 100%;
+            }
+        }
 
         .content1{
             padding-left: 135px;
@@ -206,7 +251,8 @@ body{
             }
 
             .content1_right{
-                padding-right: 39px;
+                padding-right: 45px;
+
                 img{
                     width: 880px;
                     height: 560px;
@@ -222,7 +268,8 @@ body{
             margin-bottom: 160px;
 
             .content2_left{
-                padding-left: 7px;
+                padding-left: 4px;
+
                 img{
                     width: 880px;
                     height: 560px; 
