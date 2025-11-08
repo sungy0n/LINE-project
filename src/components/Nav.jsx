@@ -4,6 +4,7 @@ import lang_icon from '../asset/image/Nav_image/lang_icon.png'
 import lang_icon2 from '../asset/image/Nav_image/lang_icon2.svg'
 
 const Nav = () => {
+
   return (
     <div id="Nav_wrap">
         <div className="logo">

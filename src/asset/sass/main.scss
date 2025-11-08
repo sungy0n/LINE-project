@@ -236,8 +236,9 @@ body{
                     
                     
                     img{
-                        width: 30px;
-                        height: 30px;
+                        margin-top: 5px;
+                        width: 28px;
+                        height: 28px;
                     }
 
 
@@ -323,9 +324,8 @@ body{
                     gap: 5px;
 
                     img{
-                        width: 22px;
+                        width: 28px;
                     }
-
 
                     #icon_frame{
                         display: flex;
@@ -347,7 +347,12 @@ body{
                         align-items: center;
                         gap: 10px;
                         border: solid 1px rgba(0, 0, 0, 0.15);
-                    
+
+                        img{
+                            margin-top: 5px;
+                            width: 28px;
+                            height: 28px;
+                        }
                         }
                 }
             }
@@ -641,13 +646,15 @@ body{
         list-style: none;
         gap: 36px;
 
-        span{
-            width: 100%;
-            border: 1px solid rgb(30, 30, 30, 0.2);
-            border-radius: 50px;
-            color: rgb(30, 30, 30, 0.7);
-            padding: 10px 15px;
+        li{
 
+            span{
+                width: 100%;
+                border: 1px solid rgb(30, 30, 30, 0.2);
+                border-radius: 50px;
+                color: rgb(30, 30, 30, 0.7);
+                padding: 8px 14px;
+            }
         }
 
     }
@@ -658,6 +665,7 @@ body{
         color: white; 
     }
 }
+
 
 #Card_wrap{
     font-family: 'LineSeed';
