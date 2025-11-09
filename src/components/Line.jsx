@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Category from './Service_component/Category'
 import Card from './Service_component/Card'
 import content1_right_img from '../asset/image/content1_right.png'
@@ -14,6 +14,7 @@ import content5 from '../asset/image/content5.png'
 import content6 from '../asset/image/content6.png'
 import banner_img from '../asset/image/banner.png'
 import line_icon from '../asset/image/line.png'
+import line_icon2 from '../asset/image/line_icon2.svg'
 
 import openchat_icon from '../asset/image/Card_image/openchat.png'
 import linewebtoon_icon from '../asset/image/Card_image/linewebtoon_icon.png'
@@ -50,6 +51,11 @@ import line_pop2_icon from '../asset/image/Card_image/line_pop2.png'
 import line_puzzle_icon from '../asset/image/Card_image/line_puzzle.png'
 import line_bubble_icon from '../asset/image/Card_image/line_bubble1.png'
 import line_brownfarm_icon from '../asset/image/Card_image/line_brownfarm.jpg'
+
+import { gsap } from 'gsap'; // GSAP import
+import { ScrollTrigger } from 'gsap/ScrollTrigger'; // ScrollTrigger import
+import intro_image_1 from '../asset/image/intro_image1.jpg'
+import intro_image_2 from '../asset/image/intro_image2.jpg'
 
 const allCardsData = [
     { icon: line_icon, title: "LINE", description: "사람, 정보, 서비스를 연결하는 커뮤니케이션 앱", category: "communication" },
@@ -104,8 +110,95 @@ const Line = () => {
     setSelectedCategory(category)
   };
 
+  // GSAP ScrollTrigger 애니메이션 설정
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger); // ScrollTrigger 플러그인 등록
+
+        // 초기 로드 애니메이션 (예: Intro_wrap 등장)
+        gsap.fromTo(".intro_image_container",
+            { opacity: 0, scale: 0.9 },
+            { opacity: 1, scale: 1, duration: 1.5, ease: "power3.out" }
+        );
+        gsap.fromTo(".intro-text h1",
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 1, ease: "power2.out", delay: 0.5 }
+        );
+        gsap.fromTo(".intro-text .sub-text",
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 1, ease: "power2.out", delay: 0.8 }
+        );
+
+        // 스크롤에 따른 인터랙션
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#Intro_wrap", // 인터랙션이 시작될 기준 요소
+                start: "top top",      // #Intro_wrap의 상단이 뷰포트 상단에 닿았을 때 시작
+                end: "bottom top",     // #Intro_wrap의 하단이 뷰포트 상단에 닿았을 때 종료
+                scrub: 1,              // 스크롤에 부드럽게 연동 (1초 지연)
+                pin: true,             // #Intro_wrap을 이 구간 동안 화면에 고정
+                // markers: true,         // 개발 시 디버깅용 마커 표시
+            }
+        });
+
+        // 타임라인 애니메이션 정의
+        tl.to(".intro_image_container .intro-image-1", {
+            opacity: 0,
+            y: -100, // 위로 살짝 올리면서 사라짐
+            duration: 0.5
+        })
+        .fromTo(".intro_image_container .intro-image-2",
+            { opacity: 0, scale: 0.8, x: 100 },
+            { opacity: 1, scale: 1, x: 0, duration: 0.8 },
+            "<" // 이전 애니메이션과 동시에 시작
+        )
+        .to(".intro-text h1", {
+            x: -200, // 텍스트 왼쪽으로 이동
+            opacity: 0,
+            duration: 1
+        }, "<") // 이미지 2 애니메이션과 동시에 시작
+        .to(".intro-text .sub-text", {
+            x: -200, // 텍스트 왼쪽으로 이동
+            opacity: 0,
+            duration: 1
+        }, "<") // 이미지 2 애니메이션과 동시에 시작
+        .to("#Line_wrap .section1", { // 본문 첫 섹션 등장
+            opacity: 1,
+            y: 0,
+            duration: 1
+        }, "-=0.5"); // 이미지 2 애니메이션이 끝나기 0.5초 전부터 시작
+
+        // ScrollTrigger 정리 (컴포넌트 언마운트 시)
+        return () => {
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
+    }, []); // 빈 배열: 컴포넌트가 처음 마운트될 때 한 번만 실행
+
   return (
     <div id="Line_wrap">
+      <div id="Intro_wrap">
+            <div className="intro_image_container">
+              < div className="img_bg"></div>
+                <img src={intro_image_1} alt="LINE Interaction 1" className="intro-image intro-image-1" />
+                <img src={intro_image_2} alt="LINE Interaction 2" className="intro-image intro-image-2" />
+            </div>
+            <div className="intro_info">
+              <div className="intro_text">
+                <h1>Life on LINE</h1>
+                  <p>라인은 언제나 사용자와 함께 합니다.</p>
+              </div>
+              <div className="intro_icon">
+                <div className="line">
+                  <img src={line_icon2} alt="" />
+                  <p>다운로드</p>
+                </div>
+                <div className="icon_group">
+                  <div id='icon_frame' className="apple"></div>
+                  <div id='icon_frame' className="google"></div>
+                  <div id='icon_frame' className="desktop"></div>
+                </div>
+              </div>
+            </div>
+        </div>
         <div className="section1">
           <h1>Life on LINE</h1>
           <div className="text">메신저 앱 그 이상의 경험을 제공합니다.

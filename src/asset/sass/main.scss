@@ -86,10 +86,156 @@ body{
 
 
 #Line_wrap{
-    width: 100%;
     font-family: 'LineSeed';
 
+
+    #Intro_wrap {
+        position: relative; /* 자식 요소의 absolute 위치 기준 */
+        width: 100vw;
+        height: 773px; /* 뷰포트 전체 높이를 차지 */
+        overflow: hidden; /* 자식 요소가 넘치면 숨김 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f2f5; /* 배경색 지정 (필요에 따라 변경) */
+        z-index: 100; /* 다른 콘텐츠 위에 오도록 */
+
+        .intro_image_container {
+            position: absolute;
+            width: 100vw;
+            height: 773px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .img_bg{
+                position: absolute;
+                width: 100vw;
+                height: 773px;
+                background-color: black;
+                z-index: 1;
+                opacity: 20%;
+            }
+        }
+
+        .intro-image {
+            position: absolute;
+            width: 100%; /* 컨테이너 너비 전체 사용 */
+            height: 773px; /* 컨테이너 높이 전체 사용 */
+            
+            /* 🌟 핵심 수정: 이미지 비율을 유지하며 컨테이너를 꽉 채우도록 설정 */
+            object-fit: cover; 
+            object-position: center; /* 이미지가 잘릴 경우 중앙을 기준으로 채움 */
+            opacity: 0; 
+        }
+
+        .intro-image-1 {
+            opacity: 1; /* Image 1은 처음부터 보이게 */
+        }
+
+        .intro-image-2 {
+            opacity: 0; /* Image 2는 처음에는 숨김 */
+        }
+
+        .intro_info{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content:flex-start;
+            padding-top: 50px;
+            padding-left: 150px;
+
+            position: absolute;
+            text-align: left;
+            z-index: 9999; /* 이미지 위에 텍스트가 보이도록 */
+
+            .intro_text {
+                margin-bottom: 20px;
+
+                h1{
+                    font-family: 'LineSeed';
+                    font-size: 140px;
+                    font-weight: bold;
+                    color: #fff;
+                    margin: 0;
+                }
+
+                p{
+                    font-size: 40px;
+                    color: #fff;
+                    margin: 0;
+                }
+            }
+
+        .intro_icon{
+            margin-top: 32px;
+
+            .line{
+                display: flex;
+                align-items: center;
+                gap: 8px;
+
+                img{
+                    width: 30px;
+                    height: 24px;
+                }
+
+                p{
+                    color: #fff;
+                }
+            }
+
+            .icon_group{
+                display: flex;
+                gap: 10px;
+
+                #icon_frame{
+                    width: 60px;
+                    height: 60px;
+                    border: solid 0.5px #fff;
+                    border-radius: 4px;
+                }
+
+                .apple{
+                    background-image: url(../image/Footer_image/apple2.png);
+                    background-repeat: no-repeat;
+                    background-size: 40px;
+                    background-position:  center;
+                }
+
+                .google{
+                    background-image: url(../image/Footer_image/google2.png);
+                    background-repeat: no-repeat;
+                    background-size: 40px;
+                    background-position:  center;
+                }
+
+                .desktop{
+                    background-image: url(../image/Footer_image/desktop2.png);
+                    background-repeat: no-repeat;
+                    background-size: 40px;
+                    background-position:  center;
+                }
+
+                #icon_frame:hover{
+                    background-image: url(../image/download_icon.svg);
+                    background-repeat: no-repeat;
+                    background-size: 23px;
+                    background-position:  center;
+                    background-color: #07b53b;
+                }
+            }
+        }
+    }
+}   
+
+    
     .section1{
+        opacity: 0; /* 초기에는 숨김 */
+        transform: translateY(100px); /* 아래에서 올라오도록 초기 위치 설정 */
+        margin-top: 100px; /* 도입 섹션 아래에 오도록 설정 */
+        /* transition: opacity 1s ease-out, transform 1s ease-out; */ /* JS로 제어할 것이므로 CSS transition은 제거 */
+
         display: flex;
         flex-direction: column;
         justify-content: center;
