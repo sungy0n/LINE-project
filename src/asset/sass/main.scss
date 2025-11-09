@@ -88,11 +88,10 @@ body{
 #Line_wrap{
     font-family: 'LineSeed';
 
-
     #Intro_wrap {
         position: relative; /* 자식 요소의 absolute 위치 기준 */
         width: 100vw;
-        height: 773px; /* 뷰포트 전체 높이를 차지 */
+        height: 751px; /* 뷰포트 전체 높이를 차지 */
         overflow: hidden; /* 자식 요소가 넘치면 숨김 */
         display: flex;
         justify-content: center;
@@ -103,7 +102,7 @@ body{
         .intro_image_container {
             position: absolute;
             width: 100vw;
-            height: 773px; 
+            height: 751px; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -111,7 +110,7 @@ body{
             .img_bg{
                 position: absolute;
                 width: 100vw;
-                height: 773px;
+                height: 751px;
                 background-color: black;
                 z-index: 1;
                 opacity: 20%;
@@ -121,7 +120,7 @@ body{
         .intro-image {
             position: absolute;
             width: 100%; /* 컨테이너 너비 전체 사용 */
-            height: 773px; /* 컨테이너 높이 전체 사용 */
+            height: 751px; /* 컨테이너 높이 전체 사용 */
             
             /* 🌟 핵심 수정: 이미지 비율을 유지하며 컨테이너를 꽉 채우도록 설정 */
             object-fit: cover; 
@@ -142,12 +141,12 @@ body{
             display: flex;
             flex-direction: column;
             justify-content:flex-start;
-            padding-top: 50px;
-            padding-left: 150px;
+            top: calc(50% - 200px);
+            left: 10%;
 
             position: absolute;
             text-align: left;
-            z-index: 9999; /* 이미지 위에 텍스트가 보이도록 */
+            z-index: 2; /* 이미지 위에 텍스트가 보이도록 */
 
             .intro_text {
                 margin-bottom: 20px;
@@ -234,7 +233,6 @@ body{
         opacity: 0; /* 초기에는 숨김 */
         transform: translateY(100px); /* 아래에서 올라오도록 초기 위치 설정 */
         margin-top: 100px; /* 도입 섹션 아래에 오도록 설정 */
-        /* transition: opacity 1s ease-out, transform 1s ease-out; */ /* JS로 제어할 것이므로 CSS transition은 제거 */
 
         display: flex;
         flex-direction: column;
