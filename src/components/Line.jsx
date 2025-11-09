@@ -136,7 +136,6 @@ const Line = () => {
               </div>
               <div className="more">
                 <div className="more_img">
-                  <img src={more} alt="" />
                 </div>
                 <p>
                   자세히 보기
@@ -166,14 +165,11 @@ const Line = () => {
               </div>
               <div className="icon">
                 <div id='icon_frame' className="apple">
-                  <img src={apple} alt="" />
                 </div>
                 <div id='icon_frame' className="google">
-                  <img src={google} alt="" />
                 </div>
                 <div className="more">
                   <div className="more_img">
-                    <img src={more} alt="" />
                   </div>
                   <p>
                     자세히 보기

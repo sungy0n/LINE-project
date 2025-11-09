@@ -224,6 +224,12 @@ body{
                 }
 
                 .more{
+                    background-image: url(../image/more.png);
+                    background-repeat: no-repeat;
+                    background-size: 28px;
+                    background-position: 15px;
+                    
+
                     width: 142px;
                     height: 60px;
                     border-radius: 4px;
@@ -231,15 +237,8 @@ body{
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    gap: 10px;
+                    gap: 30px;
                     border: solid 1px rgba(0, 0, 0, 0.15);
-                    
-                    
-                    img{
-                        margin-top: 5px;
-                        width: 28px;
-                        height: 28px;
-                    }
 
 
                     p{
@@ -247,6 +246,16 @@ body{
                     }
                     
                     
+                }
+
+
+                .more:hover{
+                    background-image: url(../image/more2.png);
+                    background-repeat: no-repeat;
+                    background-size: 28px;
+                    background-position: 15px;
+                    background-color: #07b53b;
+                    color: #fff;
                 }
 
             }
@@ -336,7 +345,36 @@ body{
                         height: 60px;
                     }
 
+                    .apple{
+                        background-image: url(../image/Footer_image/apple.png);
+                        background-repeat: no-repeat;
+                        background-size: 28px;
+                        background-position:  center;
+                    }
+
+                    .google{
+                        background-image: url(../image/Footer_image/google.png);
+                        background-repeat: no-repeat;
+                        background-size: 28px;
+                        background-position:  center;
+                    }
+
+                    #icon_frame:hover{
+                        background-image: url(../image/download_icon.svg);
+                        background-repeat: no-repeat;
+                        background-size: 28px;
+                        background-position:  center;
+                        background-color: #07b53b;
+                        color: #fff;
+                    }
+
                     .more{
+                        background-image: url(../image/more.png);
+                        background-repeat: no-repeat;
+                        background-size: 28px;
+                        background-position: 15px;
+                        
+
                         width: 142px;
                         height: 60px;
                         border-radius: 4px;
@@ -344,7 +382,7 @@ body{
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        gap: 10px;
+                        gap: 30px;
                         border: solid 1px rgba(0, 0, 0, 0.15);
 
                         img{
@@ -352,7 +390,16 @@ body{
                             width: 28px;
                             height: 28px;
                         }
-                        }
+                    }
+
+                     .more:hover{
+                        background-image: url(../image/more2.png);
+                        background-repeat: no-repeat;
+                        background-size: 28px;
+                        background-position: 15px;
+                        background-color: #07b53b;
+                        color: #fff;
+                    }
                 }
             }
 
