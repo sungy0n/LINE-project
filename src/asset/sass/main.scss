@@ -51,6 +51,7 @@ body{
 
     box-sizing: border-box;
 
+
     .logo{
        img{
         width: 43px;
@@ -63,6 +64,16 @@ body{
         justify-content: center;
         gap: 80px;
         font-size: 16px;
+
+        .nav_line{
+            position: absolute;
+            top: calc(50% + 15px);
+            left: 0;
+            z-index: 1001;
+            width: 93px;
+            height: 4px;
+            background-color: #1e1e1e;
+        }
     }
 
     .language{

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { useRef } from 'react'
 import Category from './Service_component/Category'
 import Card from './Service_component/Card'
+// 이미지 import는 길어서 생략하지 않고 모두 포함합니다.
 import content1_right_img from '../asset/image/content1_right.png'
 import content2_left_img from '../asset/image/content2_left.png'
 import more from '../asset/image/more.png'
@@ -96,85 +98,114 @@ const allCardsData = [
     { icon: line_brownfarm_icon, title: "라인 브라운팜", description: "브라운과 함께 유기농 농장을 만들어나가는 모바일 SNG게임", category: "game" },
 ];
 
-const Line = () => {
-  // 상태관리 (기본값은 all)
+// App.js에서 onSetActiveSection이라는 prop을 받습니다.
+const Line = ({ onSetActiveSection }) => { 
+  
+  // Card, Category 필터링 로직
   const [selectedCategory, setSelectedCategory] = useState('all')
-
-  //카드 필터링
   const filteredCards = allCardsData.filter(card=>{
     return selectedCategory === 'all' || card.category === selectedCategory;
   })
-
-  //카테고리 클릭 핸들러
   const handleCategoryClick = (category) => {
     setSelectedCategory(category)
   };
 
-  // GSAP ScrollTrigger 애니메이션 설정
-    useEffect(() => {
-        gsap.registerPlugin(ScrollTrigger); // ScrollTrigger 플러그인 등록
+  // Main의 GSAP ScrollTrigger 애니메이션 및 네비게이션 상태 동기화 설정
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger); // ScrollTrigger 플러그인 등록
 
-        // 초기 로드 애니메이션 (예: Intro_wrap 등장)
-        gsap.fromTo(".intro_image_container",
-            { opacity: 0, scale: 0.9 },
-            { opacity: 1, scale: 1, duration: 1.5, ease: "power3.out" }
-        );
-        gsap.fromTo(".intro-text h1",
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 1, ease: "power2.out", delay: 0.5 }
-        );
-        gsap.fromTo(".intro-text .sub-text",
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 1, ease: "power2.out", delay: 0.8 }
-        );
+    // 1. 네비게이션 섹션의 ID와 이름 정의
+    const sections = [
+        // id: HTML 요소에 부여한 ID (ex: id='section1')
+        // navItem: Nav.jsx에서 사용하는 메뉴 이름 (ex: "Life on LINE")
+        { id: 'section1', navItem: 'Life on LINE' },
+        { id: 'section3', navItem: '커뮤니케이션 앱' },
+        { id: 'section4', navItem: '서비스' },
+    ];
 
-        // 스크롤에 따른 인터랙션
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: "#Intro_wrap", // 인터랙션이 시작될 기준 요소
-                start: "top top",      // #Intro_wrap의 상단이 뷰포트 상단에 닿았을 때 시작
-                end: "bottom top",     // #Intro_wrap의 하단이 뷰포트 상단에 닿았을 때 종료
-                scrub: 1,              // 스크롤에 부드럽게 연동 (1초 지연)
-                pin: true,             // #Intro_wrap을 이 구간 동안 화면에 고정
-                // markers: true,         // 개발 시 디버깅용 마커 표시
-            }
+    // 2. 각 섹션별 ScrollTrigger 생성 (네비게이션 동기화 로직)
+    // 섹션이 뷰포트 중앙에 왔을 때 activeSection 상태를 업데이트합니다.
+    sections.forEach(({ id, navItem }) => {
+        ScrollTrigger.create({
+            trigger: `#${id}`, // 해당 섹션의 ID를 트리거로 사용
+            start: "top center", // 섹션 상단이 뷰포트 중앙에 닿았을 때
+            end: "bottom center", // 섹션 하단이 뷰포트 중앙을 지날 때
+            // markers: true, // 개발 시 위치 확인용
+
+            // 섹션 진입 시 (스크롤 다운)
+            onEnter: () => {
+                onSetActiveSection(navItem);
+            },
+            // 섹션을 지나쳐서 위로 스크롤하여 되돌아갈 때 (스크롤 업)
+            onEnterBack: () => {
+                onSetActiveSection(navItem);
+            },
         });
+    });
 
-        // 타임라인 애니메이션 정의
-        tl.to(".intro_image_container .intro-image-1", {
-            opacity: 0,
-            y: -100, // 위로 살짝 올리면서 사라짐
-            duration: 0.5
-        })
-        .fromTo(".intro_image_container .intro-image-2",
-            { opacity: 0, scale: 0.8, x: 100 },
-            { opacity: 1, scale: 1, x: 0, duration: 0.8 },
-            "<" // 이전 애니메이션과 동시에 시작
-        )
-        .to(".intro-text h1", {
-            x: -200, // 텍스트 왼쪽으로 이동
-            opacity: 0,
-            duration: 1
-        }, "<") // 이미지 2 애니메이션과 동시에 시작
-        .to(".intro-text .sub-text", {
-            x: -200, // 텍스트 왼쪽으로 이동
-            opacity: 0,
-            duration: 1
-        }, "<") // 이미지 2 애니메이션과 동시에 시작
-        .to("#Line_wrap .section1", { // 본문 첫 섹션 등장
-            opacity: 1,
-            y: 0,
-            duration: 1
-        }, "-=0.5"); // 이미지 2 애니메이션이 끝나기 0.5초 전부터 시작
+    // 3. 초기 로드 및 스크롤에 따른 인터랙션 (기존 코드 유지)
 
-        // ScrollTrigger 정리 (컴포넌트 언마운트 시)
-        return () => {
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-        };
-    }, []); // 빈 배열: 컴포넌트가 처음 마운트될 때 한 번만 실행
+    // 초기 로드 애니메이션 (예: Intro_wrap 등장)
+    gsap.fromTo(".intro_image_container",
+        { opacity: 0, scale: 0.9 },
+        { opacity: 1, scale: 1, duration: 1.5, ease: "power3.out" }
+    );
+    gsap.fromTo(".intro-text h1",
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1, ease: "power2.out", delay: 0.5 }
+    );
+    gsap.fromTo(".intro-text p", // sub-text 대신 p 태그를 사용했으므로 수정
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1, ease: "power2.out", delay: 0.8 }
+    );
+
+    // 스크롤에 따른 인터랙션 (Intro_wrap 고정/전환 애니메이션)
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#Intro_wrap", // 인터랙션이 시작될 기준 요소
+            start: "top top",      // #Intro_wrap의 상단이 뷰포트 상단에 닿았을 때 시작
+            end: "bottom top",     // #Intro_wrap의 하단이 뷰포트 상단에 닿았을 때 종료
+            scrub: 1,              // 스크롤에 부드럽게 연동 (1초 지연)
+            pin: true,             // #Intro_wrap을 이 구간 동안 화면에 고정
+        }
+    });
+
+    // 타임라인 애니메이션 정의
+    tl.to(".intro_image_container .intro-image-1", {
+        opacity: 0,
+        y: -100, // 위로 살짝 올리면서 사라짐
+        duration: 0.5
+    })
+    .fromTo(".intro_image_container .intro-image-2",
+        { opacity: 0, scale: 0.8, x: 100 },
+        { opacity: 1, scale: 1, x: 0, duration: 0.8 },
+        "<" // 이전 애니메이션과 동시에 시작
+    )
+    .to(".intro_text h1", { // h1 태그 수정
+        x: -200, // 텍스트 왼쪽으로 이동
+        opacity: 0,
+        duration: 1
+    }, "<") // 이미지 2 애니메이션과 동시에 시작
+    .to(".intro_text p", { // sub-text 대신 p 태그를 사용했으므로 수정
+        x: -200, // 텍스트 왼쪽으로 이동
+        opacity: 0,
+        duration: 1
+    }, "<") // 이미지 2 애니메이션과 동시에 시작
+    .to("#Line_wrap .section1", { // 본문 첫 섹션 등장
+        opacity: 1,
+        y: 0,
+        duration: 1
+    }, "-=0.5"); // 이미지 2 애니메이션이 끝나기 0.5초 전부터 시작
+
+    // ScrollTrigger 정리 (컴포넌트 언마운트 시)
+    return () => {
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, [onSetActiveSection]); // onSetActiveSection을 의존성 배열에 추가
 
   return (
     <div id="Line_wrap">
+      {/* Intro Section - GSAP Pinning/Transition */}
       <div id="Intro_wrap">
             <div className="intro_image_container">
               < div className="img_bg"></div>
@@ -199,12 +230,16 @@ const Line = () => {
               </div>
             </div>
         </div>
-        <div className="section1">
+
+        {/* Section 1 - Life on LINE (Nav 동기화 대상) */}
+        <div id='section1' className="section1">
           <h1>Life on LINE</h1>
           <div className="text">메신저 앱 그 이상의 경험을 제공합니다.
             <br /> 라인은 새로운 인프라 경험, 새로운 커뮤니케이션 경험을 모두에게 전달하고자 합니다.
           </div>
         </div>
+        
+        {/* Section 2 - Life on LINE 상세 내용 (section1의 연장선으로 간주) */}
         <div className="section2">
           <div className="line">
             <div id='circle' className="circle1"></div>
@@ -212,6 +247,7 @@ const Line = () => {
             <div className="circle3"></div>
           </div>
           <div className="content1">
+            {/* ... (content1 내용) ... */}
             <div className="content1_left">
               <div className="logo">
                 NEWS
@@ -240,6 +276,7 @@ const Line = () => {
             </div>
           </div>
           <div className="content2">
+            {/* ... (content2 내용) ... */}
             <div className="content2_left">
               <img src={content2_left_img} alt="" />
             </div>
@@ -272,7 +309,9 @@ const Line = () => {
             </div>
           </div>  
         </div>
-          <div className="section3">
+
+        {/* Section 3 - 커뮤니케이션 앱 (Nav 동기화 대상) */}
+        <div id='section3' className="section3">
             <h1>커뮤니케이션 앱</h1>
             <div className="text">언제 어디서나 무료로 메세지를 보내고,깨끗한 음질로 24시간 자유롭게 무료 통화가
               <br /> 가능한 새로운 커뮤니케이션 앱입니다.
@@ -331,7 +370,9 @@ const Line = () => {
               <img className='banner_img' src={banner_img} alt="" />
             </div>
         </div>
-        <div className="section4">
+
+        {/* Section 4 - 서비스 (Nav 동기화 대상) */}
+        <div id='section4' className="section4">
             <div className="content1">
               <h1>서비스</h1>
               <p>일부 서비스는 특정 국가에서만 사용 가능합니다.</p>
