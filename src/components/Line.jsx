@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { useRef } from 'react'
 import Category from './Service_component/Category'
 import Card from './Service_component/Card'
-// 이미지 import는 길어서 생략하지 않고 모두 포함합니다.
+// 이미지 import (모두 유지)
 import content1_right_img from '../asset/image/content1_right.png'
 import content2_left_img from '../asset/image/content2_left.png'
-import more from '../asset/image/more.png'
-import apple from '../asset/image/Footer_image/apple.png'
-import google from '../asset/image/Footer_image/google.png'
 import content1 from '../asset/image/content2.png'
 import content2 from '../asset/image/content1.png'
 import content3 from '../asset/image/content3.png'
@@ -56,6 +52,7 @@ import line_brownfarm_icon from '../asset/image/Card_image/line_brownfarm.jpg'
 
 import { gsap } from 'gsap'; // GSAP import
 import { ScrollTrigger } from 'gsap/ScrollTrigger'; // ScrollTrigger import
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'; // 👈 ScrollToPlugin Import 유지
 import intro_image_1 from '../asset/image/intro_image1.jpg'
 import intro_image_2 from '../asset/image/intro_image2.jpg'
 
@@ -98,10 +95,10 @@ const allCardsData = [
     { icon: line_brownfarm_icon, title: "라인 브라운팜", description: "브라운과 함께 유기농 농장을 만들어나가는 모바일 SNG게임", category: "game" },
 ];
 
-// App.js에서 onSetActiveSection이라는 prop을 받습니다.
-const Line = ({ onSetActiveSection }) => { 
+// App.js에서 onSetActiveSection, navClickTarget, setNavClickTarget prop을 받습니다.
+const Line = ({ onSetActiveSection, navClickTarget, setNavClickTarget }) => { 
   
-  // Card, Category 필터링 로직
+  // Card, Category 필터링 로직 (유지)
   const [selectedCategory, setSelectedCategory] = useState('all')
   const filteredCards = allCardsData.filter(card=>{
     return selectedCategory === 'all' || card.category === selectedCategory;
@@ -109,99 +106,122 @@ const Line = ({ onSetActiveSection }) => {
   const handleCategoryClick = (category) => {
     setSelectedCategory(category)
   };
+  
+  // 섹션 ID와 Nav 메뉴 이름을 매핑 (유지)
+  const SECTION_MAP = {
+      'Life on LINE': 'section1',
+      '커뮤니케이션 앱': 'section3',
+      '서비스': 'section4',
+  };
+
 
   // Main의 GSAP ScrollTrigger 애니메이션 및 네비게이션 상태 동기화 설정
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger); // ScrollTrigger 플러그인 등록
+    // ScrollToPlugin 등록
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin); 
+
+    // 모든 ScrollTrigger 정리 (클린업은 return에서 하지만, 혹시 모를 상황에 대비)
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 
     // 1. 네비게이션 섹션의 ID와 이름 정의
     const sections = [
-        // id: HTML 요소에 부여한 ID (ex: id='section1')
-        // navItem: Nav.jsx에서 사용하는 메뉴 이름 (ex: "Life on LINE")
         { id: 'section1', navItem: 'Life on LINE' },
         { id: 'section3', navItem: '커뮤니케이션 앱' },
         { id: 'section4', navItem: '서비스' },
     ];
 
     // 2. 각 섹션별 ScrollTrigger 생성 (네비게이션 동기화 로직)
-    // 섹션이 뷰포트 중앙에 왔을 때 activeSection 상태를 업데이트합니다.
     sections.forEach(({ id, navItem }) => {
         ScrollTrigger.create({
-            trigger: `#${id}`, // 해당 섹션의 ID를 트리거로 사용
-            start: "top center", // 섹션 상단이 뷰포트 중앙에 닿았을 때
-            end: "bottom center", // 섹션 하단이 뷰포트 중앙을 지날 때
-            // markers: true, // 개발 시 위치 확인용
-
-            // 섹션 진입 시 (스크롤 다운)
-            onEnter: () => {
-                onSetActiveSection(navItem);
-            },
-            // 섹션을 지나쳐서 위로 스크롤하여 되돌아갈 때 (스크롤 업)
-            onEnterBack: () => {
-                onSetActiveSection(navItem);
-            },
+            trigger: `#${id}`,
+            // Nav 높이(80px)와 동기화
+            start: "top 80px", 
+            end: "bottom 80px", // end 지점도 Nav 높이 고려
+            
+            // 섹션 진입 시 (스크롤 다운/업)
+            // 'section1'은 Intro 섹션과의 전환을 부드럽게 하기 위해 onEnterBack을 Intro의 pin이 끝나는 시점에 맞춥니다.
+            onEnter: () => onSetActiveSection(navItem),
+            onEnterBack: () => onSetActiveSection(navItem),
         });
     });
 
-    // 3. 초기 로드 및 스크롤에 따른 인터랙션 (기존 코드 유지)
-
-    // 초기 로드 애니메이션 (예: Intro_wrap 등장)
+    // 3. 초기 로드 및 스크롤에 따른 인터랙션 (Intro Section Timeline 수정)
     gsap.fromTo(".intro_image_container",
         { opacity: 0, scale: 0.9 },
         { opacity: 1, scale: 1, duration: 1.5, ease: "power3.out" }
     );
-    gsap.fromTo(".intro-text h1",
+    gsap.fromTo(".intro_text h1", 
         { opacity: 0, y: 30 },
         { opacity: 1, y: 0, duration: 1, ease: "power2.out", delay: 0.5 }
     );
-    gsap.fromTo(".intro-text p", // sub-text 대신 p 태그를 사용했으므로 수정
+    gsap.fromTo(".intro_text p", 
         { opacity: 0, y: 30 },
         { opacity: 1, y: 0, duration: 1, ease: "power2.out", delay: 0.8 }
     );
 
-    // 스크롤에 따른 인터랙션 (Intro_wrap 고정/전환 애니메이션)
     const tl = gsap.timeline({
         scrollTrigger: {
-            trigger: "#Intro_wrap", // 인터랙션이 시작될 기준 요소
-            start: "top top",      // #Intro_wrap의 상단이 뷰포트 상단에 닿았을 때 시작
-            end: "bottom top",     // #Intro_wrap의 하단이 뷰포트 상단에 닿았을 때 종료
-            scrub: 1,              // 스크롤에 부드럽게 연동 (1초 지연)
-            pin: true,             // #Intro_wrap을 이 구간 동안 화면에 고정
+            trigger: "#Intro_wrap", 
+            start: "top top",      
+            end: "+=500", // 이 값은 충분히 크게 유지 (예: 3000~5000)
+            scrub: 1,              
+            pin: false,     
+            pinSpacing: false, 
         }
     });
 
-    // 타임라인 애니메이션 정의
     tl.to(".intro_image_container .intro-image-1", {
         opacity: 0,
-        y: -100, // 위로 살짝 올리면서 사라짐
+        y: -100,
         duration: 0.5
     })
     .fromTo(".intro_image_container .intro-image-2",
         { opacity: 0, scale: 0.8, x: 100 },
         { opacity: 1, scale: 1, x: 0, duration: 0.8 },
-        "<" // 이전 애니메이션과 동시에 시작
+        "<"
     )
-    .to(".intro_text h1", { // h1 태그 수정
-        x: -200, // 텍스트 왼쪽으로 이동
-        opacity: 0,
-        duration: 1
-    }, "<") // 이미지 2 애니메이션과 동시에 시작
-    .to(".intro_text p", { // sub-text 대신 p 태그를 사용했으므로 수정
-        x: -200, // 텍스트 왼쪽으로 이동
-        opacity: 0,
-        duration: 1
-    }, "<") // 이미지 2 애니메이션과 동시에 시작
-    .to("#Line_wrap .section1", { // 본문 첫 섹션 등장
+    
+    // 'section1'의 등장 애니메이션은 pin이 끝난 후 자연스럽게 이어지도록 유지
+    .to("#Line_wrap .section1", {
         opacity: 1,
         y: 0,
         duration: 1
-    }, "-=0.5"); // 이미지 2 애니메이션이 끝나기 0.5초 전부터 시작
+    }, "-=0.5");
 
     // ScrollTrigger 정리 (컴포넌트 언마운트 시)
     return () => {
         ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
-  }, [onSetActiveSection]); // onSetActiveSection을 의존성 배열에 추가
+  }, [onSetActiveSection]); 
+
+
+  // Nav 클릭 시 Smooth Scroll 처리 로직 (수정됨)
+  useEffect(() => {
+    if (navClickTarget) {
+      const targetId = SECTION_MAP[navClickTarget];
+      
+      if (targetId) {
+        ScrollTrigger.getAll().forEach(trigger => trigger.disable());
+        
+        gsap.to(window, {
+            duration: 1, 
+            scrollTo: {
+                y: `#${targetId}`, // 타겟 ID로 스크롤
+                offsetY: 80 
+            },
+            ease: "power2.inOut",
+            onComplete: () => {
+                setNavClickTarget(null);
+                onSetActiveSection(navClickTarget); 
+                                setTimeout(() => {
+                  ScrollTrigger.getAll().forEach(trigger => trigger.enable());
+                }, 200); 
+            }
+        });
+      }
+    }
+  }, [navClickTarget, setNavClickTarget, onSetActiveSection]);
+
 
   return (
     <div id="Line_wrap">
@@ -231,15 +251,13 @@ const Line = ({ onSetActiveSection }) => {
             </div>
         </div>
 
-        {/* Section 1 - Life on LINE (Nav 동기화 대상) */}
-        <div id='section1' className="section1">
+        <div id='section1' className="section1" style={{opacity: 0, transform: 'translateY(100px)'}}> 
           <h1>Life on LINE</h1>
           <div className="text">메신저 앱 그 이상의 경험을 제공합니다.
             <br /> 라인은 새로운 인프라 경험, 새로운 커뮤니케이션 경험을 모두에게 전달하고자 합니다.
           </div>
         </div>
         
-        {/* Section 2 - Life on LINE 상세 내용 (section1의 연장선으로 간주) */}
         <div className="section2">
           <div className="line">
             <div id='circle' className="circle1"></div>
@@ -247,7 +265,6 @@ const Line = ({ onSetActiveSection }) => {
             <div className="circle3"></div>
           </div>
           <div className="content1">
-            {/* ... (content1 내용) ... */}
             <div className="content1_left">
               <div className="logo">
                 NEWS
@@ -276,7 +293,6 @@ const Line = ({ onSetActiveSection }) => {
             </div>
           </div>
           <div className="content2">
-            {/* ... (content2 내용) ... */}
             <div className="content2_left">
               <img src={content2_left_img} alt="" />
             </div>
@@ -310,7 +326,6 @@ const Line = ({ onSetActiveSection }) => {
           </div>  
         </div>
 
-        {/* Section 3 - 커뮤니케이션 앱 (Nav 동기화 대상) */}
         <div id='section3' className="section3">
             <h1>커뮤니케이션 앱</h1>
             <div className="text">언제 어디서나 무료로 메세지를 보내고,깨끗한 음질로 24시간 자유롭게 무료 통화가
@@ -371,7 +386,6 @@ const Line = ({ onSetActiveSection }) => {
             </div>
         </div>
 
-        {/* Section 4 - 서비스 (Nav 동기화 대상) */}
         <div id='section4' className="section4">
             <div className="content1">
               <h1>서비스</h1>
@@ -388,7 +402,7 @@ const Line = ({ onSetActiveSection }) => {
                   />
                 ))}
               </div>
-            </div>
+            </div> 
         </div>
     </div> 
   )
