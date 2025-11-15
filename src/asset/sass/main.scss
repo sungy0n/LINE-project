@@ -31,6 +31,7 @@ body{
 
 
 #Nav_wrap{
+    opacity: 95%;
     cursor: pointer;
     position: fixed;
     z-index: 1000;
@@ -377,6 +378,7 @@ body{
                 }
 
                 .more{
+                    cursor: pointer;
                     background-image: url(../image/more.png);
                     background-repeat: no-repeat;
                     background-size: 28px;
@@ -522,6 +524,7 @@ body{
                     }
 
                     .more{
+                        cursor: pointer;
                         background-image: url(../image/more.png);
                         background-repeat: no-repeat;
                         background-size: 28px;
