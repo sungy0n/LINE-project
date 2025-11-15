@@ -163,7 +163,7 @@ const Line = ({ onSetActiveSection, navClickTarget, setNavClickTarget }) => {
         scrollTrigger: {
             trigger: "#Intro_wrap", 
             start: "top top",      
-            end: "+=500", // 이 값은 충분히 크게 유지 (예: 3000~5000)
+            // end: "+=500", // 이 값은 충분히 크게 유지 (예: 3000~5000)
             scrub: 1,              
             pin: false,     
             pinSpacing: false, 
@@ -195,7 +195,6 @@ const Line = ({ onSetActiveSection, navClickTarget, setNavClickTarget }) => {
   }, [onSetActiveSection]); 
 
 
-  // Nav 클릭 시 Smooth Scroll 처리 로직 (수정됨)
   useEffect(() => {
     if (navClickTarget) {
       const targetId = SECTION_MAP[navClickTarget];
@@ -204,23 +203,27 @@ const Line = ({ onSetActiveSection, navClickTarget, setNavClickTarget }) => {
         ScrollTrigger.getAll().forEach(trigger => trigger.disable());
         
         gsap.to(window, {
-            duration: 1, 
+            duration: 0.3, // 👈 [1] 1.0초 -> 0.3초 (Nav.js와 속도 통일)
             scrollTo: {
                 y: `#${targetId}`, // 타겟 ID로 스크롤
                 offsetY: 80 
             },
-            ease: "power2.inOut",
+            ease: "power2.out", // 👈 [2] 'power2.inOut' -> 'power2.out' (Nav.js와 느낌 통일)
             onComplete: () => {
                 setNavClickTarget(null);
-                onSetActiveSection(navClickTarget); 
-                                setTimeout(() => {
+                
+                // 👈 [3] onSetActiveSection(navClickTarget); 삭제!
+                // (이중 호출 방지. 상태 변경은 Nav.js가 클릭 즉시 전담)
+
+                setTimeout(() => {
                   ScrollTrigger.getAll().forEach(trigger => trigger.enable());
                 }, 200); 
             }
         });
       }
     }
-  }, [navClickTarget, setNavClickTarget, onSetActiveSection]);
+    // 린트 규칙을 위해 SECTION_MAP을 의존성 배열에 추가합니다.
+  }, [navClickTarget, setNavClickTarget, onSetActiveSection, SECTION_MAP]);
 
 
   return (
