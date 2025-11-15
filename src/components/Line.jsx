@@ -228,7 +228,6 @@ const Line = ({ onSetActiveSection, navClickTarget, setNavClickTarget }) => {
 
   return (
     <div id="Line_wrap">
-      {/* Intro Section - GSAP Pinning/Transition */}
       <div id="Intro_wrap">
             <div className="intro_image_container">
               < div className="img_bg"></div>
